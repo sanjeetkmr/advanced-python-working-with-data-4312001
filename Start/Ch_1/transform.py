@@ -26,14 +26,14 @@ def toGrade(x):
 nums = (1, 8, 4, 5, 13, 26, 381, 410, 58, 47)
 grades = (81, 89, 94, 78, 61, 66, 99, 74)
 
-# # TODO: use map to create a new sequence of values
-# squares = list(map(squareFunc, nums))
-# print(squares)
+# TODO: use map to create a new sequence of values
+squares = list(map(squareFunc, nums))
+print(squares)
 
-# # TODO: use sorted and map to change numbers to grades
-# grades = sorted(grades)
-# letters = list(map(toGrade, grades))
-# print(letters)
+# TODO: use sorted and map to change numbers to grades
+grades = sorted(grades)
+letters = list(map(toGrade, grades))
+print(letters)
 
 # Use the filter on our data - let's filter out all seismic events that were *not* quakes
 # open the data file and load the JSON

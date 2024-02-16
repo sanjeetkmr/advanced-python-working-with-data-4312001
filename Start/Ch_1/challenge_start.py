@@ -23,28 +23,30 @@ def isQuake(q):
 
 def getFelt100(q):
     if q["properties"]["felt"] is not None and q["properties"]["felt"] >= 100:
-        return True
-    return False
+        return q
+
         
 def getSig(q):
-    if q["properties"]["sig"] == "none":
+    signi = q["properties"]["sig"]
+    if signi is None:
         return 0
-    return int(q["properties"]["sig"])
-
+    else:       
+        return int(signi)
 
 
 maxnoquake =  list(filter(isQuake, data["features"]))
-print(len(maxnoquake))
-for i in range (1, 5):
-    print(maxnoquake[i]["properties"]["gap"])
-
+print(f"Total quakes: {len(maxnoquake)}")
 
 #Print total quake felt by at least 100 people
 feltquake  = list(filter(getFelt100, data["features"]))
-print(len(feltquake))
+print(f"Total quakes felt by at least 100 people: {len(feltquake)}")
 
-print("Printing 10 most sig")
+# Print most felt report events
+most_felt = max(data["features"], key=getSig )
+print(f"Most felt reports : M {most_felt['properties']['sig']} - {most_felt['properties']['place']}")
+
+print("The 10 most significant events were:")
 # print 10 most significant event
 data["features"].sort(key=getSig, reverse=True)
 for i in range (0,10):
-    print(data["features"][i]["properties"]["sig"])
+    print(f"""Event : {data['features'][i]['properties']['title']} Significance {data['features'][i]['properties']['sig']} : {data['features'][i]['properties']['felt']}""")
